@@ -30,4 +30,28 @@ public class MyBeanTest {
         assertThat(idIndex).isGreaterThan(-1);   // Verify id exists
         assertThat(nameIndex).isLessThan(idIndex); // Verify name comes before id
     }
+
+    @Test
+    public void whenDeserializingUsingJsonSetter_thenCorrect() throws Exception {
+    
+        String json = "{\"id\":1,\"name\":\"My bean\"}";
+
+        MyBean bean = new ObjectMapper()
+        .readerFor(MyBean.class)
+        .readValue(json);
+
+        assertThat(bean.getTheName()).isEqualTo("My bean");
+    }
+
+    @Test
+    public void whenSerializingUsingJsonInclude_thenCorrect() throws Exception {
+ 
+        MyBean bean = new MyBean(1, null);
+
+        String result = new ObjectMapper().writeValueAsString(bean);
+        System.out.println(result);
+    
+        assertThat(result).contains("1");
+        assertThat(result).doesNotContain("name");
+    }
 }

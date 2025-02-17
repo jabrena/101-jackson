@@ -24,4 +24,17 @@ public class ExtendableBeanTest {
         assertThat(result).contains("val1");
     }
 
+    @Test
+    public void whenDeserializingUsingJsonAnySetter_thenCorrect() throws Exception {
+        String json
+        = "{\"name\":\"My bean\",\"attr2\":\"val2\",\"attr1\":\"val1\"}";
+
+        ExtendableBean bean = new ObjectMapper()
+        .readerFor(ExtendableBean.class)
+        .readValue(json);
+        
+        assertThat(bean.getName()).isEqualTo("My bean");
+        assertThat(bean.getProperties().get("attr2")).isEqualTo("val2");
+    }
+
 }
