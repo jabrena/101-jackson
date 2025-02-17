@@ -12,7 +12,7 @@ Jackson has been known as "the Java JSON library"
  ./mvnw clean verify
 ```
 
-## References
+## References
 
 - https://github.com/FasterXML/jackson
 - https://github.com/FasterXML/jackson-docs
@@ -20,6 +20,14 @@ Jackson has been known as "the Java JSON library"
 - https://github.com/FasterXML/jackson-core
 - https://github.com/FasterXML/jackson-annotations
 
-### Learning
+### Learning
 
 - https://www.baeldung.com/jackson
+- https://www.baeldung.com/jackson-annotations
+- https://www.baeldung.com/jackson-object-mapper-tutorial
+
+## Prompts
+
+```
+create a empty test class without any test and not give any explanation
+```
