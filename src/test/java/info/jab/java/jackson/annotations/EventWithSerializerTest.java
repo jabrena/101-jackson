@@ -28,4 +28,17 @@ class EventWithSerializerTest {
         System.out.println(result);
         assertThat(result).contains(toParse);
     }
+
+    @Test
+    public void whenDeserializingUsingJsonDeserialize_thenCorrect() throws Exception {
+    
+        String json = "{\"name\":\"party\",\"eventDate\":\"20-12-2014 02:30:00\"}";
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+        EventWithSerializer event = new ObjectMapper()
+        .readerFor(EventWithSerializer.class)
+        .readValue(json);
+        
+        assertThat(df.format(event.eventDate)).isEqualTo("20-12-2014 02:30:00");
+    }
 } 

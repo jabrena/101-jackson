@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonAnySetter;
 
 //https://github.com/eugenp/tutorials/blob/master/jackson-simple/src/main/java/com/baeldung/jackson/annotation/ExtendableBean.java
 public class ExtendableBean {
-    public String name;
+    private String name;
     private Map<String, String> properties;
 
     public ExtendableBean() {
@@ -28,5 +28,9 @@ public class ExtendableBean {
     @JsonAnyGetter
     public Map<String, String> getProperties() {
         return properties;
+    }   
+
+    public String getName() {
+        return name;
     }
 }
