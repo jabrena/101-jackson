@@ -1,0 +1,13 @@
+{
+    "child": {
+      "name": "Emma",
+      "age": 8,
+      "favorite_fruits": [
+        "apple",
+        "banana",
+        "strawberry",
+        "orange",
+        "mango"
+      ]
+    }
+  }

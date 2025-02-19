@@ -9,7 +9,7 @@ Jackson has been known as "the Java JSON library"
 ## Build
 
 ```bash
- ./mvnw clean verify
+./mvnw clean verify
 ```
 
 ## References
@@ -25,8 +25,10 @@ Jackson has been known as "the Java JSON library"
 - https://www.baeldung.com/jackson
 - https://www.baeldung.com/jackson-annotations
 - https://www.baeldung.com/jackson-object-mapper-tutorial
+- https://www.baeldung.com/jackson-custom-serialization
+- https://www.baeldung.com/jackson-custom-deserialization
 
-## Prompts
+## Cursor Prompts
 
 ```
 create a empty test class without any test and not give any explanation
