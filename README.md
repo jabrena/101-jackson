@@ -2,7 +2,7 @@
 
 A way to learn details about Jackson.
 
-## What is Jackson?
+## What is Jackson?
 
 Jackson has been known as "the Java JSON library" 
 
@@ -27,6 +27,7 @@ Jackson has been known as "the Java JSON library"
 - https://www.baeldung.com/jackson-object-mapper-tutorial
 - https://www.baeldung.com/jackson-custom-serialization
 - https://www.baeldung.com/jackson-custom-deserialization
+- https://www.baeldung.com/jackson-json-merge
 
 ## Cursor Prompts
 
