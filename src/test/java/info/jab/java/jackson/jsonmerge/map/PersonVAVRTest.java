@@ -24,12 +24,12 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 
  * The VAVR Jackson module is primarily focused on serialization/deserialization of VAVR collections and doesn't include built-in map merging functionality like some other Jackson modules.
  */
-class PersonWithContactsVAVRTest {
+class PersonVAVRTest {
 
     @Test
     void should_merge_contacts_map_when_updating_person() throws Exception {
         // Given
-        PersonWithContactsVAVR person = new PersonWithContactsVAVR();
+        PersonVAVR person = new PersonVAVR();
         person.setName("John Doe");
         person.getContacts().put("email", "john@example.com");
         person.getContacts().put("phone", "123-456-7890");
@@ -50,7 +50,7 @@ class PersonWithContactsVAVRTest {
                                    .setDefaultPropertyInclusion(Include.NON_EMPTY)
                                    .registerModule(new VavrModule(new Settings().deserializeNullAsEmptyCollection(true)));
         
-        PersonWithContactsVAVR updatedPerson = mapper.readerForUpdating(person).readValue(jsonToMerge);
+        PersonVAVR updatedPerson = mapper.readerForUpdating(person).readValue(jsonToMerge);
         System.out.println(updatedPerson);
 
         // Then

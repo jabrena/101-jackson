@@ -1,9 +1,10 @@
-package info.jab.java.jackson.jsonmerge.collection;
+package info.jab.java.jackson.jsonmerge.list;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import io.vavr.collection.List;
 import io.vavr.jackson.datatype.VavrModule;
 import io.vavr.jackson.datatype.VavrModule.Settings;
 
@@ -14,12 +15,14 @@ import org.assertj.core.groups.Tuple;
 
 class DepartmentVAVRTest {
 
+    // Should be 3 employees, not 2. Pending conversation. (Immutable List)
     @Test
     public void should_MergeDepartmentEmployees_WhenUpdatingWithNewAndExistingEmployees() throws Exception {
         // Given
-        DepartmentVAVR department = new DepartmentVAVR("IT");
-        department.addEmployee(new Employee("1", "John")); 
-        department.addEmployee(new Employee("2", "Alice"));
+        DepartmentVAVR department = new DepartmentVAVR("IT", List.of(
+            new Employee("1", "John"),
+            new Employee("2", "Alice")
+        ));
 
         // When
         String updateJson = """

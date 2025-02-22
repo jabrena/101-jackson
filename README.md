@@ -10,6 +10,7 @@ Jackson has been known as "the Java JSON library"
 
 ```bash
 ./mvnw clean verify
+./mvnw clean verify -Dtest=EmployeeTest  
 ```
 
 ## Cursor Prompts
@@ -20,6 +21,8 @@ add equals and hashcode & toString method to the class and not give any explanat
 evolve the tests using Given When Then and not give any explanation
 refactor with assertj and not give any explanation
 use textblocks to create json strings and not give any explanation
+add a comment in class in the section for properties, constructor, getters, setters, equals, hashcode, toString and not give any explanation
+
 ```
 
 ## JSON Merge
@@ -40,6 +43,15 @@ Note that use of merging usually adds some processing overhead since it adds an 
 Note also that "root values" (values directly deserialized and not reached via POJO properties) can not use this annotation; instead, ObjectMapper and Object have "updating reader" operations.
 
 Default value is OptBoolean.TRUE, that is, merging is enabled.
+
+---
+
+### Test Results
+
+| Type | POJO | List | Map | Map Deep Merge | Scalar |
+|------|------|------|-----|----------------|--------|
+| JDK  | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/pojo/Employee.java) | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentTest.java) | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/map/Person.java) | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainer.java) | [OK](src/main/java/info/jab/java/jackson/jsonmerge/scalar/Product.java) |
+| Vavr | NA   | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentVAVRTest.java) | [KO](./src/main/java/info/jab/java/jackson/jsonmerge/map/PersonVAVR.java)  | [KO](./src/main/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainerVAVR.java)         | NA     |
 
 ## References
 

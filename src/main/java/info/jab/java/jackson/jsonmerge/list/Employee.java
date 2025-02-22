@@ -1,24 +1,18 @@
-package info.jab.java.jackson.jsonmerge.collection;
+package info.jab.java.jackson.jsonmerge.list;
 
 import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Employee {
-    @JsonProperty("id")
+    // Properties
     private String id;
-    
-    @JsonProperty("name")
     private String name;
     
     // Constructors
     public Employee() {}
     
-    @JsonCreator
-    public Employee(@JsonProperty("id") String id, 
-                   @JsonProperty("name") String name) {
+    public Employee(String id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -40,6 +34,7 @@ public class Employee {
         this.name = name;
     }
     
+    // Equals and HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -54,6 +49,7 @@ public class Employee {
         return Objects.hash(id);
     }
 
+    // toString
     @Override
     public String toString() {
         return "Employee{" +

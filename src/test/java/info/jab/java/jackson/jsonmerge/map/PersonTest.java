@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class PersonWithContactsTest {
+class PersonTest {
 
     @Test
     void should_merge_contacts_map_when_updating_person() throws Exception {
         // Given
-        PersonWithContacts person = new PersonWithContacts();
+        Person person = new Person();
         person.setName("John Doe");
         person.getContacts().put("email", "john@example.com");
         person.getContacts().put("phone", "123-456-7890");
@@ -28,8 +28,7 @@ class PersonWithContactsTest {
 
         // When
         ObjectMapper mapper = new ObjectMapper();
-        PersonWithContacts updatedPerson = mapper.readerForUpdating(person)
-                .readValue(jsonToMerge);
+        Person updatedPerson = mapper.readerForUpdating(person).readValue(jsonToMerge);
 
         // Then
         assertThat(updatedPerson.getName()).isEqualTo("John Doe");

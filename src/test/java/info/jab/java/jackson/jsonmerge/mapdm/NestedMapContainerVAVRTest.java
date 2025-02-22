@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class NestedMapContainerVAVRTest {
 
+    // The jsonmerge doesn't work as expected for Vavr Map.
     @Disabled("This test is not working as expected")
     @Test
     void should_merge_nested_maps() throws Exception {

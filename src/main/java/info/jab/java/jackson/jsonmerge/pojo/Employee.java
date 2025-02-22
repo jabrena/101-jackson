@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonMerge;
 import java.util.Objects;
 
 public class Employee {
+    // Properties
     private String name;
     private String dept;
     private int salary;
     private String phone;
-
     @JsonMerge
     private Address address;
 
+    // Constructors
     public Employee() {
     }
 
@@ -23,6 +24,7 @@ public class Employee {
         this.address = address;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -63,6 +65,7 @@ public class Employee {
         this.address = address;
     }
 
+    // Equals and HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -80,6 +83,7 @@ public class Employee {
         return Objects.hash(name, dept, salary, phone, address);
     }
 
+    // toString
     @Override
     public String toString() {
         return "Employee{" +

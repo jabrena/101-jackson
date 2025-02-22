@@ -1,8 +1,11 @@
-package info.jab.java.jackson.jsonmerge.collection;
+package info.jab.java.jackson.jsonmerge.list;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.assertj.core.api.Assertions;
 import org.assertj.core.groups.Tuple;
@@ -17,13 +20,14 @@ import org.assertj.core.groups.Tuple;
  */
 class DepartmentTest {
 
+    // Should be 3 employees, not 4. ¯\_(ツ)_/¯
     @Test
     public void should_MergeDepartmentEmployees_WhenUpdatingWithNewAndExistingEmployees() throws Exception {
         // Given
-        ObjectMapper mapper = new ObjectMapper();
-        Department department = new Department("IT");
-        department.addEmployee(new Employee("1", "John")); 
-        department.addEmployee(new Employee("2", "Alice"));
+        Department department = new Department("IT", new ArrayList<>(Arrays.asList(
+            new Employee("1", "John"),
+            new Employee("2", "Alice")
+        )));
 
         // When
         String updateJson = """
@@ -35,6 +39,7 @@ class DepartmentTest {
                 ]
             }
             """;
+        ObjectMapper mapper = new ObjectMapper();
         Department updatedDepartment = mapper.readerForUpdating(department).readValue(updateJson);
 
         // Then

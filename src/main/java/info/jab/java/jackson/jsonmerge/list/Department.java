@@ -1,4 +1,4 @@
-package info.jab.java.jackson.jsonmerge.collection;
+package info.jab.java.jackson.jsonmerge.list;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
 
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Department {
+    // Properties
     private String name;
     
     @JsonMerge
@@ -15,8 +16,9 @@ public class Department {
     // Constructors
     public Department() {}
     
-    public Department(String name) {
+    public Department(String name, List<Employee> employees) {
         this.name = name;
+        this.employees = employees;
     }
     
     // Getters and Setters
@@ -27,18 +29,16 @@ public class Department {
     public void setName(String name) {
         this.name = name;
     }
-    
-    @Override
-    public String toString() {
-        return "Department{" +
-                "name='" + name + '\'' +
-                ", employees=" + getEmployees() +
-                                '}';
-                    }
-                
+                    
     public List<Employee> getEmployees() {
         return employees;
     }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    // Equals and HashCode
                 
     @Override
     public boolean equals(Object o) {
@@ -54,7 +54,12 @@ public class Department {
         return Objects.hash(name, employees);
     }
 
-    public void addEmployee(Employee employee) {
-        employees.add(employee);
-    }
+    // toString
+    @Override
+    public String toString() {
+        return "Department{" +
+                "name='" + name + '\'' +
+                ", employees=" + getEmployees() +
+                                '}';
+                    }
 } 

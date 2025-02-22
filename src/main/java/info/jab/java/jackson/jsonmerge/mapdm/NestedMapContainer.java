@@ -6,17 +6,19 @@ import java.util.Map;
 import java.util.Objects;
 
 public class NestedMapContainer {
-    
+    // Properties
     @JsonMerge
     private Map<String, Map<String, String>> nestedData = new HashMap<>();
     
+    // Constructors
     public NestedMapContainer() {
     }
 
     public NestedMapContainer(Map<String, Map<String, String>> nestedData) {
         this.nestedData = nestedData;
     }
-    
+
+    // Getters and Setters
     public Map<String, Map<String, String>> getNestedData() {
         return nestedData;
     }
@@ -30,6 +32,7 @@ public class NestedMapContainer {
                   .put(innerKey, value);
     }
     
+    // Equals and HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,6 +46,7 @@ public class NestedMapContainer {
         return Objects.hash(nestedData);
     }
     
+    // toString
     @Override
     public String toString() {
         return "NestedMapContainer{" +

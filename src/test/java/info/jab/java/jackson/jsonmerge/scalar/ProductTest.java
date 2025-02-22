@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Disabled;
 
-class MergeableProductTest {
+class ProductTest {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Test
     void given_original_product_when_partial_update_then_only_name_is_updated() throws Exception {
         // Given
-        MergeableProduct original = new MergeableProduct("Original Name", "Original Description");
+        Product original = new Product("Original Name", "Original Description");
         String partialJson = """
                 {
                     "name": "New Name"
@@ -21,7 +21,7 @@ class MergeableProductTest {
                 """;
 
         // When
-        MergeableProduct merged = mapper.readerForUpdating(original)
+        Product merged = mapper.readerForUpdating(original)
                 .readValue(partialJson);
 
         // Then
@@ -32,7 +32,7 @@ class MergeableProductTest {
     @Test
     void given_original_product_when_complete_update_then_all_fields_are_updated() throws Exception {
         // Given
-        MergeableProduct original = new MergeableProduct("Original Name", "Original Description");
+        Product original = new Product("Original Name", "Original Description");
         String completeJson = """
                 {
                     "name": "New Name",
@@ -41,7 +41,7 @@ class MergeableProductTest {
                 """;
 
         // When
-        MergeableProduct merged = mapper.readerForUpdating(original)
+        Product merged = mapper.readerForUpdating(original)
                 .readValue(completeJson);
 
         // Then
@@ -53,7 +53,7 @@ class MergeableProductTest {
     @Test
     void given_original_product_when_update_with_null_description_then_description_is_preserved() throws Exception {
         // Given
-        MergeableProduct original = new MergeableProduct("Original Name", "Original Description");
+        Product original = new Product("Original Name", "Original Description");
         String jsonWithNull = """
                 {
                     "name": "New Name",
@@ -62,7 +62,7 @@ class MergeableProductTest {
                 """;
 
         // When
-        MergeableProduct merged = mapper.readerForUpdating(original)
+        Product merged = mapper.readerForUpdating(original)
                 .readValue(jsonWithNull);
 
         // Then

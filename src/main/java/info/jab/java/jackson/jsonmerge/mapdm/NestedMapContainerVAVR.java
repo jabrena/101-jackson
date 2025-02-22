@@ -6,10 +6,11 @@ import io.vavr.collection.Map;
 import java.util.Objects;
 
 public class NestedMapContainerVAVR {
-    
+    // Properties   
     @JsonMerge
     private Map<String, Map<String, String>> nestedData = HashMap.empty();
     
+    // Constructors
     public NestedMapContainerVAVR() {
     }
     
@@ -17,6 +18,7 @@ public class NestedMapContainerVAVR {
         this.nestedData = nestedData;
     }
     
+    // Getters and Setters
     public Map<String, Map<String, String>> getNestedData() {
         return nestedData;
     }
@@ -31,6 +33,7 @@ public class NestedMapContainerVAVR {
         this.nestedData = nestedData.put(outerKey, updatedInnerMap);
     }
     
+    // Equals and HashCode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -44,6 +47,7 @@ public class NestedMapContainerVAVR {
         return Objects.hash(nestedData);
     }
     
+    // toString
     @Override
     public String toString() {
         return "NestedMapContainerVAVR{" +
