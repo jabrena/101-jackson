@@ -1,17 +1,15 @@
-package info.jab.java.jackson.jsonmerge;
+package info.jab.java.jackson.jsonmerge.collection;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collection;
 import java.util.Objects;
 
 public class Department {
     private String name;
     
     @JsonMerge
-    @JsonProperty("employees")
     private List<Employee> employees = new ArrayList<>();
     
     // Constructors
@@ -29,7 +27,6 @@ public class Department {
     public void setName(String name) {
         this.name = name;
     }
-    
     
     @Override
     public String toString() {

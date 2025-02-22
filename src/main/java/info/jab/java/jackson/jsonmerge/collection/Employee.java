@@ -1,4 +1,4 @@
-package info.jab.java.jackson.jsonmerge;
+package info.jab.java.jackson.jsonmerge.collection;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonInclude;
