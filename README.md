@@ -50,8 +50,8 @@ Default value is OptBoolean.TRUE, that is, merging is enabled.
 
 | Type | POJO | List | Map | Map Deep Merge | Scalar |
 |------|------|------|-----|----------------|--------|
-| JDK  | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/pojo/Employee.java) | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentTest.java) | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/map/Person.java) | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainer.java) | [OK](src/main/java/info/jab/java/jackson/jsonmerge/scalar/Product.java) |
-| Vavr | NA   | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentVAVRTest.java) | [KO](./src/main/java/info/jab/java/jackson/jsonmerge/map/PersonVAVR.java)  | [KO](./src/main/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainerVAVR.java)         | NA     |
+| JDK  | [OK](./src/main/java/info/jab/java/jackson/jsonmerge/pojo/Employee.java) | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentTest.java) | [OK](./src/test/java/info/jab/java/jackson/jsonmerge/map/PersonTest.java) | [OK](./src/test/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainerTest.java) | [OK](src/main/java/info/jab/java/jackson/jsonmerge/scalar/Product.java) |
+| Vavr | NA   | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/list/DepartmentVAVRTest.java) | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/map/PersonVAVRTest.java)  | [KO](./src/test/java/info/jab/java/jackson/jsonmerge/mapdm/NestedMapContainerVAVRTest.java)         | NA     |
 
 ## References
 
