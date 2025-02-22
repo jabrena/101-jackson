@@ -1,6 +1,11 @@
 package info.jab.java.jackson.jsonmerge.collection;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.vavr.jackson.datatype.VavrModule;
+import io.vavr.jackson.datatype.VavrModule.Settings;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,17 +32,19 @@ class DepartmentVAVRTest {
             }
             """;
 
-        ObjectMapper mapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+            .setDefaultPropertyInclusion(Include.NON_EMPTY)
+            .registerModule(new VavrModule(new Settings().deserializeNullAsEmptyCollection(true)));
+
         DepartmentVAVR updatedDepartment = mapper.readerForUpdating(department).readValue(updateJson);
 
         // Then
         Assertions.assertThat(updatedDepartment.getName()).isEqualTo("IT Department");
         Assertions.assertThat(updatedDepartment.getEmployees())
-            .hasSize(4)
+            .hasSize(2)
             .extracting("id", "name")
             .containsExactlyInAnyOrder(
-                Tuple.tuple("1", "John"),
-                Tuple.tuple("2", "Alice"), 
                 Tuple.tuple("2", "Alice"), 
                 Tuple.tuple("3", "Bob")
             );
