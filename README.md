@@ -19,6 +19,7 @@ create a empty test class without any test and not give any explanation
 add equals and hashcode & toString method to the class and not give any explanation
 evolve the tests using Given When Then and not give any explanation
 refactor with assertj and not give any explanation
+use textblocks to create json strings and not give any explanation
 ```
 
 ## JSON Merge
