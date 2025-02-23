@@ -16,7 +16,7 @@ Jackson has been known as "the Java JSON library"
 ./mvnw versions:display-plugin-updates
 ```
 
-## Status
+## Status
 
 - [x] Java Jackson warnup
 - [x] Jackson JsonMerge warnup
