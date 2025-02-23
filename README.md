@@ -21,8 +21,8 @@ Jackson has been known as "the Java JSON library"
 - [x] Java Jackson warnup
 - [x] Jackson JsonMerge warnup
 - [x] Jackson JsonMege for VAVR warnup
+- [ ] Jackson Deserializer classes involved
 - [ ] Jackson JsonMege deep merge
-
 
 ## JSON Merge
 
@@ -61,9 +61,22 @@ Default value is OptBoolean.TRUE, that is, merging is enabled.
 - https://github.com/FasterXML/jackson-annotations
 - https://github.com/FasterXML/jackson-annotations/blob/master/src/main/java/com/fasterxml/jackson/annotation/JsonMerge.java
 - https://www.javadoc.io/doc/com.fasterxml.jackson.core/jackson-annotations/latest/com/fasterxml/jackson/annotation/JsonMerge.html
+- https://github.com/vavr-io/vavr-jackson
+- https://github.com/vavr-io/vavr-jackson/blob/main/src/main/java/io/vavr/jackson/datatype/VavrModule.java
+- https://github.com/vavr-io/vavr-jackson/blob/main/src/main/java/io/vavr/jackson/datatype/deserialize/VavrDeserializers.java
+- https://github.com/FasterXML/jackson-databind/blob/2.19/src/main/java/com/fasterxml/jackson/databind/deser/Deserializers.java
+- https://github.com/vavr-io/vavr-jackson/blob/main/src/main/java/io/vavr/jackson/datatype/deserialize/MapDeserializer.java
+- https://github.com/vavr-io/vavr-jackson/blob/main/src/main/java/io/vavr/jackson/datatype/deserialize/MaplikeDeserializer.java
+- https://github.com/FasterXML/jackson-databind/blob/2.19/src/main/java/com/fasterxml/jackson/databind/deser/std/StdDeserializer.java
+- https://github.com/FasterXML/jackson-databind/blob/2.19/src/main/java/com/fasterxml/jackson/databind/deser/ContextualDeserializer.java
 
 ### Learning
 
+- https://docs.oracle.com/en/java/javase/23/docs/specs/serialization/index.html
+- https://www.youtube.com/watch?v=dOgfWXw9VrI&ab_channel=Devoxx
+- https://github.com/FasterXML/jackson-docs
+- https://github.com/FasterXML/jackson-docs/wiki/_pages
+- https://visionarysoftware.solutions/visions/java/serialization/architecture.html
 - https://www.baeldung.com/jackson
 - https://www.baeldung.com/jackson-annotations
 - https://www.baeldung.com/jackson-object-mapper-tutorial
