@@ -3,6 +3,8 @@ package info.jab.java.jackson.jsonmerge.map;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;
 
@@ -11,6 +13,7 @@ public class PersonVAVR {
     private String name;
     
     @JsonMerge
+    //@JsonDeserialize(using = StringStringMergingVavrMapDeserializer.class)
     private Map<String, String> contacts = HashMap.empty();
 
     // Constructors

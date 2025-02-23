@@ -11,19 +11,18 @@ Jackson has been known as "the Java JSON library"
 ```bash
 ./mvnw clean verify
 ./mvnw clean verify -Dtest=EmployeeTest  
+
+./mvnw versions:display-dependency-updates
+./mvnw versions:display-plugin-updates
 ```
 
-## Cursor Prompts
+## Status
 
-```bash
-create a empty test class without any test and not give any explanation
-add equals and hashcode & toString method to the class and not give any explanation
-evolve the tests using Given When Then and not give any explanation
-refactor with assertj and not give any explanation
-use textblocks to create json strings and not give any explanation
-add a comment in class in the section for properties, constructor, getters, setters, equals, hashcode, toString and not give any explanation
+- [x] Java Jackson warnup
+- [x] Jackson JsonMerge warnup
+- [x] Jackson JsonMege for VAVR warnup
+- [ ] Jackson JsonMege deep merge
 
-```
 
 ## JSON Merge
 
@@ -72,3 +71,15 @@ Default value is OptBoolean.TRUE, that is, merging is enabled.
 - https://www.baeldung.com/jackson-custom-deserialization
 - https://www.baeldung.com/jackson-json-merge
 
+## Cursor AI Prompts
+
+```bash
+create a empty test class without any test and not give any explanation
+add equals and hashcode & toString method to the class and not give any explanation
+evolve the tests using Given When Then and not give any explanation
+refactor with assertj and not give any explanation
+use textblocks to create json strings and not give any explanation
+put indented json in the textblocks with json
+add a comment in class in the section for properties, constructor, getters, setters, equals, hashcode, toString and not give any explanation
+all tests need to have an assert
+```

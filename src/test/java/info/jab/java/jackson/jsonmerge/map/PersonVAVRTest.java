@@ -49,12 +49,14 @@ class PersonVAVRTest {
                                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                                    .setDefaultPropertyInclusion(Include.NON_EMPTY)
                                    .registerModule(new VavrModule(new Settings().deserializeNullAsEmptyCollection(true)));
+                                   //.registerModule(new VavrMapMergeModule());
         
         PersonVAVR updatedPerson = mapper.readerForUpdating(person).readValue(jsonToMerge);
         System.out.println(updatedPerson);
 
         // Then
         assertThat(updatedPerson.getName()).isEqualTo("John Doe");
+
         assertThat(updatedPerson.getContacts()).hasSize(2);
     }
 } 

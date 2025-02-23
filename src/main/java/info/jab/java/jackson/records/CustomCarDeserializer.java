@@ -1,4 +1,4 @@
-package info.jab.java.jackson.objectmapper;
+package info.jab.java.jackson.records;
 
 import java.io.IOException;
 
@@ -20,14 +20,11 @@ public class CustomCarDeserializer extends StdDeserializer<Car> {
 
     @Override
     public Car deserialize(JsonParser parser, DeserializationContext deserializer) throws IOException {
-        Car car = new Car();
         ObjectCodec codec = parser.getCodec();
         JsonNode node = codec.readTree(parser);
         
-        // try catch block
-        JsonNode colorNode = node.get("color");
-        String color = colorNode.asText();
-        car.setColor(color);
-        return car;
+        String color = node.get("color").asText();
+        String brand = node.get("brand").asText();
+        return new Car(color, brand);
     }
 }

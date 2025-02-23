@@ -1,4 +1,4 @@
-package info.jab.java.jackson.objectmapper;
+package info.jab.java.jackson.records;
 
 import java.io.IOException;
 
@@ -20,7 +20,8 @@ public class CustomCarSerializer extends StdSerializer<Car> {
     public void serialize(
       Car car, JsonGenerator jsonGenerator, SerializerProvider serializer) throws IOException {
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeStringField("car_brand", car.getBrand());
+        jsonGenerator.writeStringField("color", car.color());
+        jsonGenerator.writeStringField("brand", car.brand());
         jsonGenerator.writeEndObject();
     }
 }
