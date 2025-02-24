@@ -3,6 +3,7 @@ package info.jab.java.jackson.jsonmerge.issue185;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.annotation.OptBoolean;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import info.jab.java.jackson.jsonmerge.vavr.VAVRMapDeserializer;
 import io.vavr.collection.List;
 import io.vavr.collection.Map;
 
@@ -15,15 +16,28 @@ public class ParentVAVR {
   List<String> list;
 
   @JsonMerge
-  @JsonDeserialize(using = ParentVAVRMapDeserializer.class)
+  @JsonDeserialize(using = ParentMapDeserializer.class)
   Map<String, String> map;
 
   @JsonMerge
-  @JsonDeserialize(using = ParentVAVRDeepMapDeserializer.class)
+  @JsonDeserialize(using = ParentDeepMapDeserializer.class)
   Map<String, Map<String, String>> deepMap;
 
   @JsonMerge
   Child child;
+
+  // Define specialized deserializers as static inner classes
+  private static class ParentMapDeserializer extends VAVRMapDeserializer<ParentVAVR, String, String> {
+    public ParentMapDeserializer() {
+      super(ParentVAVR.class, String.class, String.class, parent -> parent.map);
+    }
+  }
+
+  private static class ParentDeepMapDeserializer extends VAVRMapDeserializer<ParentVAVR, String, Map<String, String>> {
+    public ParentDeepMapDeserializer() {
+      super(ParentVAVR.class, String.class, (Class<Map<String, String>>)(Class<?>)Map.class, parent -> parent.deepMap);
+    }
+  }
 
   ParentVAVR() {
   }
