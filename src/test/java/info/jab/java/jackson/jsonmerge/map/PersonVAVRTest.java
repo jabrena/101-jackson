@@ -24,7 +24,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * 
  * The VAVR Jackson module is primarily focused on serialization/deserialization of VAVR collections and doesn't include built-in map merging functionality like some other Jackson modules.
  */
-class PersonVAVRTest2 {
+class PersonVAVRTest {
 
     @Test
     void should_merge_contacts_map_when_updating_person() throws Exception {
