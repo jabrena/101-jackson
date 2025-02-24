@@ -10,33 +10,38 @@ import io.vavr.collection.Map;
 import java.io.IOException;
 import java.util.Iterator;
 
-public class StringStringMergingVavrMapDeserializer extends JsonDeserializer<Map<String, String>> {
+public class PersonVAVRMapDeserializer extends JsonDeserializer<Map<String, String>> {
     
     @Override
     public Map<String, String> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         ObjectMapper mapper = (ObjectMapper) p.getCodec();
         JsonNode node = mapper.readTree(p);
         
-        // Get the current value if we're updating
+        // Get current map from the PersonVAVR instance
+        Map<String, String> currentMap = HashMap.empty();
         Object currentValue = p.getCurrentValue();
-        Map<String, String> existingMap = null;
         if (currentValue instanceof PersonVAVR) {
-            existingMap = ((PersonVAVR) currentValue).getContacts();
+            PersonVAVR person = (PersonVAVR) currentValue;
+            currentMap = person.getContacts() != null ? person.getContacts() : HashMap.empty();
         }
         
-        Map<String, String> result = existingMap != null ? existingMap : HashMap.empty();
+        // Create a mutable map to store all entries
+        java.util.Map<String, String> mergedMap = new java.util.HashMap<>();
         
-        // Process all fields in the new JSON
+        // Add all entries from current map
+        currentMap.forEach(mergedMap::put);
+        
+        // Add or update entries from the incoming JSON
         if (node.isObject()) {
             Iterator<String> fieldNames = node.fieldNames();
             while (fieldNames.hasNext()) {
-                String fieldName = fieldNames.next();
-                JsonNode valueNode = node.get(fieldName);
-                String value = valueNode.asText();
-                result = result.put(fieldName, value);
+                String key = fieldNames.next();
+                String value = node.get(key).asText();
+                mergedMap.put(key, value);
             }
         }
         
-        return result;
+        // Convert back to VAVR Map
+        return HashMap.ofAll(mergedMap);
     }
 } 

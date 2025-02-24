@@ -13,7 +13,7 @@ public class PersonVAVR {
     private String name;
     
     @JsonMerge
-    //@JsonDeserialize(using = StringStringMergingVavrMapDeserializer.class)
+    @JsonDeserialize(using = PersonVAVRMapDeserializer.class)
     private Map<String, String> contacts = HashMap.empty();
 
     // Constructors
@@ -39,6 +39,11 @@ public class PersonVAVR {
 
     public void setContacts(Map<String, String> contacts) {
         this.contacts = contacts;
+    }
+
+    // Helper method for immutable map operations
+    public void putContact(String key, String value) {
+        this.contacts = this.contacts.put(key, value);
     }
 
     // Equals and HashCode
