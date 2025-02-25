@@ -10,19 +10,11 @@ Jackson has been known as "the Java JSON library"
 
 ```bash
 ./mvnw clean verify
-./mvnw clean verify -Dtest=PersonVAVRTest  
+./mvnw clean verify -Dtest=DepartmentVAVRTest  
 
 ./mvnw versions:display-dependency-updates
 ./mvnw versions:display-plugin-updates
 ```
-
-## Status
-
-- [x] Java Jackson warnup
-- [x] Jackson JsonMerge warnup
-- [x] Jackson JsonMege for VAVR warnup
-- [ ] Jackson Deserializer classes involved
-- [ ] Jackson JsonMege deep merge
 
 ## JSON Merge
 

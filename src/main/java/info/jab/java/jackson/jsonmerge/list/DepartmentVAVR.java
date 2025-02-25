@@ -1,6 +1,8 @@
 package info.jab.java.jackson.jsonmerge.list;
 
 import com.fasterxml.jackson.annotation.JsonMerge;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import info.jab.java.jackson.jsonmerge.vavr.VavrJsonMergeListDeserializer;
 
 import io.vavr.collection.List;
 
@@ -11,7 +13,15 @@ public class DepartmentVAVR {
     private String name;
     
     @JsonMerge
+    @JsonDeserialize(using = EmployeeListDeserializer.class)
     private List<Employee> employees = List.empty();
+    
+    // Custom deserializer for employees list
+    public static class EmployeeListDeserializer extends VavrJsonMergeListDeserializer<DepartmentVAVR, Employee> {
+        public EmployeeListDeserializer() {
+            super(DepartmentVAVR.class, Employee.class, DepartmentVAVR::getEmployees);
+        }
+    }
     
     // Constructors
     public DepartmentVAVR() {}

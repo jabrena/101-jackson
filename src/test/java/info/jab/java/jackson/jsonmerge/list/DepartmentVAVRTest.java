@@ -45,9 +45,11 @@ class DepartmentVAVRTest {
         // Then
         Assertions.assertThat(updatedDepartment.getName()).isEqualTo("IT Department");
         Assertions.assertThat(updatedDepartment.getEmployees())
-            .hasSize(2)
+            .hasSize(4)
             .extracting("id", "name")
             .containsExactlyInAnyOrder(
+                Tuple.tuple("1", "John"),
+                Tuple.tuple("2", "Alice"), 
                 Tuple.tuple("2", "Alice"), 
                 Tuple.tuple("3", "Bob")
             );
