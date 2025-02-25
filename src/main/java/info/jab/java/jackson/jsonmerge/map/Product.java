@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import info.jab.java.jackson.jsonmerge.vavr.VAVRMapDeserializer;
+import info.jab.java.jackson.jsonmerge.vavr.VavrJsonMergeMapDeserializer;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;
 
@@ -22,7 +22,7 @@ public class Product {
     private Map<String, Integer> attributes = HashMap.empty();
     
     // Static inner class for the specific deserializer
-    private static class ProductAttributesDeserializer extends VAVRMapDeserializer<Product, String, Integer> {
+    private static class ProductAttributesDeserializer extends VavrJsonMergeMapDeserializer<Product, String, Integer> {
         public ProductAttributesDeserializer() {
             super(Product.class, String.class, Integer.class, Product::getAttributes);
         }

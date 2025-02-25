@@ -20,7 +20,7 @@ import java.util.function.Function;
  * @param <K> The type of keys in the map
  * @param <V> The type of values in the map
  */
-public class VAVRMapDeserializer<T, K, V> extends JsonDeserializer<Map<K, V>> {
+public class VavrJsonMergeMapDeserializer<T, K, V> extends JsonDeserializer<Map<K, V>> {
     
     private final Class<T> parentClass;
     private final Class<K> keyClass;
@@ -35,7 +35,7 @@ public class VAVRMapDeserializer<T, K, V> extends JsonDeserializer<Map<K, V>> {
      * @param valueClass The class of the values in the map
      * @param mapGetter Function to extract the current map from the parent object
      */
-    public VAVRMapDeserializer(
+    public VavrJsonMergeMapDeserializer(
         Class<T> parentClass, Class<K> keyClass, Class<V> valueClass, 
         Function<T, Map<K, V>> mapGetter) {
         this.parentClass = parentClass;
@@ -51,7 +51,7 @@ public class VAVRMapDeserializer<T, K, V> extends JsonDeserializer<Map<K, V>> {
         
         // Get current map from the parent instance
         Map<K, V> currentMap = HashMap.empty();
-        Object currentValue = p.getCurrentValue();
+        Object currentValue = p.currentValue();
         
         if (parentClass.isInstance(currentValue)) {
             @SuppressWarnings("unchecked")

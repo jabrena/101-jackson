@@ -5,7 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import info.jab.java.jackson.jsonmerge.vavr.VAVRMapDeserializer;
+import info.jab.java.jackson.jsonmerge.vavr.VavrJsonMergeMapDeserializer;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;
 
@@ -18,7 +18,7 @@ public class PersonVAVR {
     private Map<String, String> contacts = HashMap.empty();
     
     // Static inner class for the specific deserializer
-    private static class PersonVAVRContactsDeserializer extends VAVRMapDeserializer<PersonVAVR, String, String> {
+    private static class PersonVAVRContactsDeserializer extends VavrJsonMergeMapDeserializer<PersonVAVR, String, String> {
         public PersonVAVRContactsDeserializer() {
             super(PersonVAVR.class, String.class, String.class, PersonVAVR::getContacts);
         }

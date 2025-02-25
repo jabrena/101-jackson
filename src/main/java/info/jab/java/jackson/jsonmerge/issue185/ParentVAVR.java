@@ -3,13 +3,13 @@ package info.jab.java.jackson.jsonmerge.issue185;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.annotation.OptBoolean;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import info.jab.java.jackson.jsonmerge.vavr.VAVRMapDeserializer;
+import info.jab.java.jackson.jsonmerge.vavr.VavrJsonMergeMapDeserializer;
 import io.vavr.collection.List;
 import io.vavr.collection.Map;
 
 import java.util.Objects;
 
-//TODO replace with record in the future, currently not supported by jackson
+//TODO replace with record in the future
 public class ParentVAVR {
 
   @JsonMerge(OptBoolean.FALSE)
@@ -27,13 +27,13 @@ public class ParentVAVR {
   Child child;
 
   // Define specialized deserializers as static inner classes
-  private static class ParentMapDeserializer extends VAVRMapDeserializer<ParentVAVR, String, String> {
+  private static class ParentMapDeserializer extends VavrJsonMergeMapDeserializer<ParentVAVR, String, String> {
     public ParentMapDeserializer() {
       super(ParentVAVR.class, String.class, String.class, parent -> parent.map);
     }
   }
 
-  private static class ParentDeepMapDeserializer extends VAVRMapDeserializer<ParentVAVR, String, Map<String, String>> {
+  private static class ParentDeepMapDeserializer extends VavrJsonMergeMapDeserializer<ParentVAVR, String, Map<String, String>> {
     public ParentDeepMapDeserializer() {
       super(ParentVAVR.class, String.class, (Class<Map<String, String>>)(Class<?>)Map.class, parent -> parent.deepMap);
     }
