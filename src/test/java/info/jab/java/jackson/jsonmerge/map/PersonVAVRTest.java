@@ -31,8 +31,8 @@ class PersonVAVRTest {
         // Given
         PersonVAVR person = new PersonVAVR();
         person.setName("John Doe");
-        person.getContacts().put("email", "john@example.com");
-        person.getContacts().put("phone", "123-456-7890");
+        person.putContact("email", "john@example.com");
+        person.putContact("phone", "123-456-7890");
 
         String jsonToMerge = """
             {
@@ -49,14 +49,15 @@ class PersonVAVRTest {
                                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                                    .setDefaultPropertyInclusion(Include.NON_EMPTY)
                                    .registerModule(new VavrModule(new Settings().deserializeNullAsEmptyCollection(true)));
-                                   //.registerModule(new VavrMapMergeModule());
         
         PersonVAVR updatedPerson = mapper.readerForUpdating(person).readValue(jsonToMerge);
         System.out.println(updatedPerson);
 
         // Then
         assertThat(updatedPerson.getName()).isEqualTo("John Doe");
-
-        assertThat(updatedPerson.getContacts()).hasSize(2);
+        assertThat(updatedPerson.getContacts()).hasSize(3);
+        assertThat(updatedPerson.getContacts().get("email").get()).isEqualTo("john@example.com");
+        assertThat(updatedPerson.getContacts().get("phone").get()).isEqualTo("999-999-9999");
+        assertThat(updatedPerson.getContacts().get("twitter").get()).isEqualTo("@johndoe");
     }
 } 

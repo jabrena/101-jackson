@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonMerge;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import info.jab.java.jackson.jsonmerge.vavr.VavrJsonMergeMapDeserializer;
 import io.vavr.collection.HashMap;
 import io.vavr.collection.Map;
 
@@ -13,8 +14,15 @@ public class PersonVAVR {
     private String name;
     
     @JsonMerge
-    //@JsonDeserialize(using = StringStringMergingVavrMapDeserializer.class)
+    @JsonDeserialize(using = PersonVAVRContactsDeserializer.class)
     private Map<String, String> contacts = HashMap.empty();
+    
+    // Static inner class for the specific deserializer
+    private static class PersonVAVRContactsDeserializer extends VavrJsonMergeMapDeserializer<PersonVAVR, String, String> {
+        public PersonVAVRContactsDeserializer() {
+            super(PersonVAVR.class, String.class, String.class, PersonVAVR::getContacts);
+        }
+    }
 
     // Constructors
     public PersonVAVR() {}
@@ -39,6 +47,11 @@ public class PersonVAVR {
 
     public void setContacts(Map<String, String> contacts) {
         this.contacts = contacts;
+    }
+
+    // Helper method for immutable map operations
+    public void putContact(String key, String value) {
+        this.contacts = this.contacts.put(key, value);
     }
 
     // Equals and HashCode
