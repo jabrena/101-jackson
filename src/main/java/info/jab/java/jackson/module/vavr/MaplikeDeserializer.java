@@ -23,14 +23,14 @@ package info.jab.java.jackson.module.vavr;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
 import com.fasterxml.jackson.databind.deser.ContextualKeyDeserializer;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.deser.std.ContainerDeserializerBase;
 import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 import com.fasterxml.jackson.databind.type.MapLikeType;
 
 import java.io.Serializable;
 import java.util.Comparator;
 
-abstract class MaplikeDeserializer<T> extends StdDeserializer<T> implements ContextualDeserializer {
+abstract class MaplikeDeserializer<T> extends ContainerDeserializerBase<T> implements ContextualDeserializer {
 
     private static final long serialVersionUID = 1L;
 
@@ -93,5 +93,17 @@ abstract class MaplikeDeserializer<T> extends StdDeserializer<T> implements Cont
             elementDeser = context.handleSecondaryContextualization(elementDeser, property, mapType.getContentType());
         }
         return createDeserializer(keyDeser, elementTypeDeser, elementDeser);
+    }
+
+    @Override
+    public JavaType getContentType() {
+        return mapType.getContentType();
+    }
+
+    @Override
+    public JsonDeserializer<Object> getContentDeserializer() {
+        @SuppressWarnings("unchecked")
+        JsonDeserializer<Object> deserializer = (JsonDeserializer<Object>) elementDeserializer;
+        return deserializer;
     }
 }
