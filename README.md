@@ -10,7 +10,7 @@ Jackson has been known as "the Java JSON library"
 
 ```bash
 ./mvnw clean verify
-./mvnw clean verify -Dtest=DepartmentVAVRTest  
+./mvnw clean verify -Dtest=PersonVAVRNewModuleTest  
 
 ./mvnw versions:display-dependency-updates
 ./mvnw versions:display-plugin-updates
